@@ -77,14 +77,16 @@ public class RoundedAvatarModule extends KrollModule {
 	@Kroll.method
 	public TiBlob getRoundedAvatar(TiBlob imageBlob, int width) {
 		if (width <= 0) {
-			throw new IllegalArgumentException("Parameter 'width' has to be greater than zero!");
+			Log.error(TAG, "Parameter 'width' has to be greater than zero!");
+			return imageBlob;
 		}
 		debugMsg("Received blob with size "+Integer.toString(imageBlob.getBytes().length));
 		Bitmap image = BitmapFactory.decodeByteArray(imageBlob.getBytes(), 0, imageBlob.getBytes().length);
 		if (image != null) {
 			return getRoundedBitmapAsBlob(resizeBitmap(image, width, width));
 		} else {
-			throw new IllegalArgumentException("The passed blob could not be converted to a bitmap!");
+			Log.error(TAG, "The passed blob could not be converted to a bitmap!");
+			return imageBlob;
 		}
 	}
 	
