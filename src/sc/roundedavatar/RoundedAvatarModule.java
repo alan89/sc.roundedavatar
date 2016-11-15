@@ -22,7 +22,7 @@ import java.net.URL;
 
 import org.appcelerator.kroll.KrollModule;
 import org.appcelerator.kroll.annotations.Kroll;
-import org.appcelerator.kroll.common.Log;
+//import org.appcelerator.kroll.common.Log;
 import org.appcelerator.titanium.TiApplication;
 import org.appcelerator.titanium.TiBlob;
 
@@ -37,6 +37,7 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.graphics.RectF;
+import android.util.Log;
 
 @Kroll.module(name="RoundedAvatar", id="sc.roundedavatar")
 public class RoundedAvatarModule extends KrollModule {
@@ -64,7 +65,7 @@ public class RoundedAvatarModule extends KrollModule {
 	}
 	
 	private static void debugMsg(String msg)	{
-		Log.debug(TAG, msg);
+		Log.d(TAG, msg);
 	}
 	
 	
@@ -77,7 +78,7 @@ public class RoundedAvatarModule extends KrollModule {
 	@Kroll.method
 	public TiBlob getRoundedAvatar(TiBlob imageBlob, int width) {
 		if (width <= 0) {
-			Log.error(TAG, "Parameter 'width' has to be greater than zero!");
+			Log.d(TAG, "Parameter 'width' has to be greater than zero!");
 			return imageBlob;
 		}
 		debugMsg("Received blob with size "+Integer.toString(imageBlob.getBytes().length));
@@ -85,7 +86,7 @@ public class RoundedAvatarModule extends KrollModule {
 		if (image != null) {
 			return getRoundedBitmapAsBlob(resizeBitmap(image, width, width));
 		} else {
-			Log.error(TAG, "The passed blob could not be converted to a bitmap!");
+			Log.d(TAG, "The passed blob could not be converted to a bitmap!");
 			return imageBlob;
 		}
 	}
